@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Output the release configuration in YAML format
+cat <<EOF
+---
+config:
+  build: "true"
+EOF

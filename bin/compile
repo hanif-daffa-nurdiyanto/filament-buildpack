@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Check for PHP installation
+if ! command -v php &> /dev/null
+then
+    echo "PHP could not be found"
+    exit 1
+fi
+
+# Navigate to the application root
+APP_DIR="$1"
+cd "$APP_DIR"
+
+echo "Running composer update"
+composer update
+
+echo "Installing laravel-mix"
+npm install laravel-mix --save-dev
+
+echo "Running npm run build-member-profile-prod"
+npm run build-member-profile-prod
+
+echo "Running php artisan nova:publish"
+php artisan nova:publish
+
+cat <<EOL > public/.user.ini
+upload_max_filesize = 50M
+post_max_size = 50M
+EOL
+
+echo "Custom .user.ini file created."
+
+echo "Updating procfile"
+
+rm -f Procfile
+echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
+
+echo "Procfile updated"
+
+# Return success
+exit 0
