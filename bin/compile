@@ -20,9 +20,6 @@ npm install laravel-mix --save-dev
 echo "Running npm run build-member-profile-prod"
 npm run build-member-profile-prod
 
-echo "Running php artisan nova:publish"
-php artisan nova:publish
-
 cat <<EOL > public/.user.ini
 upload_max_filesize = 50M
 post_max_size = 50M
@@ -36,6 +33,10 @@ rm -f Procfile
 echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
 
 echo "Procfile updated"
+
+echo "Optimize Filament for production"
+
+php artisan filament:optimize
 
 # Return success
 exit 0
