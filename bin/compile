@@ -34,6 +34,9 @@ echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
 
 echo "Procfile updated"
 
+echo "Run php artisan storage:link"
+php artisan storage:link
+
 echo "Optimize Filament for production"
 
 php artisan filament:optimize
