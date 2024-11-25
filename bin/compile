@@ -31,6 +31,7 @@ echo "Updating procfile"
 
 rm -f Procfile
 echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
+echo "worker: php artisan queue:work" >> Procfile
 
 echo "Procfile updated"
 
