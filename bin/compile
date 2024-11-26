@@ -17,6 +17,9 @@ composer update
 echo "Installing laravel-mix"
 npm install laravel-mix --save-dev
 
+echo "Running npm run build"
+npm run build
+
 echo "Running npm run build-member-profile-prod"
 npm run build-member-profile-prod
 
