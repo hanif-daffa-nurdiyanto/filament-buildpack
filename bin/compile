@@ -12,10 +12,12 @@ APP_DIR="$1"
 cd "$APP_DIR"
 
 echo "Running composer update"
-composer update
+# composer update
+composer install --no-dev --prefer-dist --optimize-autoloader
 
 echo "Installing laravel-mix"
-npm install laravel-mix --save-dev
+# npm install laravel-mix --save-dev
+npm install
 
 echo "Running npm run build"
 npm run build
@@ -43,7 +45,8 @@ php artisan storage:link
 
 echo "Optimize Filament for production"
 
-php artisan filament:optimize
+# php artisan filament:optimize
+php artisan optimize
 
 # Return success
 exit 0
